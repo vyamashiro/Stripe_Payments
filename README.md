@@ -1,6 +1,6 @@
 # Basic Application using Stripe for payments
 
-Stripe Checkout is the fastest way to get started with payments. Included are some basic build and run scripts you can use to start up the application.
+Sample app for use Stripe as payment.
 
 ## Running the sample
 
