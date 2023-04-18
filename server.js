@@ -2,16 +2,22 @@ require('dotenv').config()
 // This is your test secret API key.
 const stripe = require('stripe')(process.env.API_SECRET);
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
 app.use(express.static('public'));
 
 const YOUR_DOMAIN = 'http://localhost:4242';
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.post('/create-checkout-session', async (req, res) => {
+  const userId = await req.body.userId;
   const session = await stripe.checkout.sessions.create({
     // With metadata we can input custom information like user id.
     metadata: {
-      userId: '123teste',
+      userId: userId,
     },
     line_items: [
       {

@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
+const userId = 'user12345678'
+
 const ProductDisplay = () => (
   <section>
+
     <div className="product">
       <img
         src="https://i.imgur.com/EHyR2nP.png"
         alt="The cover of Stubborn Attachments"
       />
       <div className="description">
-      <h3>Job Announcement</h3>
-      <h5>$100.00</h5>
+        <h3>Job Announcement</h3>
+        <h5>$100.00</h5>
       </div>
     </div>
+    
     <form action="/create-checkout-session" method="POST">
-      <button type="submit">
-        Buy
-      </button>
+      <input type="hidden" name="userId" value={userId}></input>
+      <button type="submit">Buy</button>
     </form>
+
   </section>
 );
 
