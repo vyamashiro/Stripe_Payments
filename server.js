@@ -17,8 +17,8 @@ app.post('/create-checkout-session', async (req, res) => {
         quantity: 1,
       }
     ],
-    mode: 'payment', // pagamento único, mas isso também deve estar configurado no produto.
-    // mode: 'subscription', // pagamento recorrente
+    mode: 'payment', // only payment (the product must have this configuration on Stripe platform).
+    // mode: 'subscription', // for recurrent payment (the product must have this configuration on Stripe platform).
     success_url: `${YOUR_DOMAIN}?success=true`,
     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
     automatic_tax: {enabled: true},
