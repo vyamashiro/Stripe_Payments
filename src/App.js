@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const userId = 'user12345678'
+const userCompanyName = 'CompanyABC'
 
 const ProductDisplay = () => (
   <section>
@@ -19,6 +20,7 @@ const ProductDisplay = () => (
     
     <form action="/create-checkout-session" method="POST">
       <input type="hidden" name="userId" value={userId}></input>
+      <input type="hidden" name="userCompanyName" value={userCompanyName}></input>
       <button type="submit">Buy</button>
     </form>
 

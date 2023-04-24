@@ -13,19 +13,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/create-checkout-session', async (req, res) => {
-  const userId = await req.body.userId;
+  const { userId, userCompanyName } = await req.body;
   const session = await stripe.checkout.sessions.create({
-    // With metadata we can input custom information like user id.
-    metadata: {
-      userId: userId,
-    },
     line_items: [
       {
         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
         price: process.env.PRICE_ID,
         quantity: 1,
-      }
+      },
     ],
+    metadata: {
+      // With metadata we can input custom information like user id.
+      userId: userId,
+      userCompanyName: userCompanyName,
+    },
     mode: 'payment', // only payment (the product must have this configuration on Stripe platform).
     // mode: 'subscription', // for recurrent payment (the product must have this configuration on Stripe platform).
     success_url: `${YOUR_DOMAIN}?success=true`,
